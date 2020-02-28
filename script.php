@@ -1,6 +1,6 @@
 <?php
 /**
- * @package    HR_Custom_Script
+ * @package    HR_Custom
  *
  * @author     HR-IT-Solutions Florian Häusler <info@hr-it-solutions.com>
  * @copyright  Copyright (C) 2020 - 2020 HR-IT-Solutions GmbH
@@ -17,11 +17,11 @@ defined('_JEXEC') or die();
 
 class PlgSystemHR_Custom_ScriptInstallerScript
 {
-	protected $name = 'System - HR IT Custom Script';
+	protected $name = 'System - HR IT Custom';
 
 	protected $extensionsToEnable = array(
 
-		array(  'name'  => 'hr_custom_script',
+		array(  'name'  => 'hr_custom',
 				'type'  => 'plugin',
 				'group' => 'system')
 

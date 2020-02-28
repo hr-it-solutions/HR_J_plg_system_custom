@@ -1,6 +1,6 @@
 <?php
 /**
- * @package    HR_Custom_Script
+ * @package    HR_Custom
  *
  * @author     HR-IT-Solutions Florian Häusler <info@hr-it-solutions.com>
  * @copyright  Copyright (C) 2020 - 2020 HR-IT-Solutions GmbH
@@ -9,19 +9,15 @@
 
 defined('_JEXEC') or die;
 
-use Joomla\CMS\Factory;
-use Joomla\CMS\Uri\Uri;
-use Joomla\CMS\Application\SiteApplication;
-
 /**
- * Class PlgSystemHR_Custom_Script
+ * Class PlgSystemHR_Custom
  *
  * @since  Version  1.0.0.0
  */
-class PlgSystemHR_Custom_Script extends JPlugin
+class PlgSystemHR_Custom extends JPlugin
 {
 	/**
-	 * @var
+	 * @var JApplicationWeb
 	 */
 	protected $app;
 
@@ -34,12 +30,17 @@ class PlgSystemHR_Custom_Script extends JPlugin
 	public function onBeforeCompileHead()
 	{
 		// Front end
-		if ($this->app instanceof SiteApplication)
-		{
-			$doc = Factory::getDocument();
 
-			$tmpl_path = Uri::base() . '/templates/' . $this->app->getTemplate() . '/';
+		if ($this->app->isClient('site'))
+		{
+			$doc = JFactory::getDocument();
+
+			$tmpl_path = JUri::base() . '/templates/' . $this->app->getTemplate() . '/';
+			$doc->addStyleSheet($tmpl_path . 'css/custom.css');
 			$doc->addScript($tmpl_path . 'js/custom.js');
+
+			$doc->addStyleSheet(JUri::base() . 'media/plg_system_hr_custom/css/custom.css');
+			$doc->addScript(JUri::base() . 'media/plg_system_hr_custom/js/custom.js');
 		}
 
 		return true;
