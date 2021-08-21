@@ -9,6 +9,9 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Factory;
+use Joomla\CMS\Uri\Uri;
+
 /**
  * Class PlgSystemHR_Custom
  *
@@ -16,33 +19,29 @@ defined('_JEXEC') or die;
  */
 class PlgSystemHR_Custom extends JPlugin
 {
-	/**
-	 * @var JApplicationWeb
-	 */
-	protected $app;
+    /**
+     * @var JApplicationWeb
+     * @since version
+     */
+    protected $app;
 
-	/**
-	 * onBeforeCompileHead
-	 *
-	 * @since Version 1.0.0.0
-	 * @return boolean
-	 */
-	public function onBeforeCompileHead()
-	{
-		// Front end
+    /**
+     * onBeforeCompileHead
+     *
+     * @since version
+     * @return boolean
+     */
+    public function onBeforeCompileHead()
+    {
+        $doc = Factory::getDocument();
 
-		if ($this->app->isClient('site'))
-		{
-			$doc = JFactory::getDocument();
+        $tmpl_path = Uri::base() . '/templates/' . $this->app->getTemplate() . '/';
+        $doc->addStyleSheet($tmpl_path . 'css/custom.css');
+        $doc->addScript($tmpl_path . 'js/custom.js');
 
-			$tmpl_path = JUri::base() . '/templates/' . $this->app->getTemplate() . '/';
-			$doc->addStyleSheet($tmpl_path . 'css/custom.css');
-			$doc->addScript($tmpl_path . 'js/custom.js');
+        $doc->addStyleSheet(Uri::base() . 'media/plg_system_hr_custom/css/custom.css');
+        $doc->addScript(Uri::base() . 'media/plg_system_hr_custom/js/custom.js');
 
-			$doc->addStyleSheet(JUri::base() . 'media/plg_system_hr_custom/css/custom.css');
-			$doc->addScript(JUri::base() . 'media/plg_system_hr_custom/js/custom.js');
-		}
-
-		return true;
-	}
+        return true;
+    }
 }
