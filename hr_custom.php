@@ -35,7 +35,7 @@ class PlgSystemHR_Custom extends JPlugin
     {
         $doc = Factory::getDocument();
 
-        $tmpl_path = Uri::base() . '/templates/' . $this->app->getTemplate() . '/';
+        $tmpl_path = Uri::base() . 'templates/' . $this->app->getTemplate() . '/';
         $doc->addStyleSheet($tmpl_path . 'css/custom.css');
         $doc->addScript($tmpl_path . 'js/custom.js');
 
